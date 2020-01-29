@@ -4,12 +4,21 @@ import Teams from '../models/teams';
 function getAllPlayers(query){
     const { page, size } = query
     let params = {}
-    if (typeof page === 'number' &&  typeof size === 'number') {
+    // if (typeof page === 'number' &&  typeof size === 'number') {
+    //     params = {
+    //         limit: size,
+    //         offset: (page - 1) * size
+    //     }
+    // }
+    if (typeof +page === 'number' &&  typeof +size === 'number') {
         params = {
-            limit: size,
-            offset: (page - 1) * size
+            limit: +size,
+            offset: (+page - 1) * +size
         }
     }
+
+    console.log('controler')
+    console.log(params)
     return db.sequelize.models.players.findAndCountAll(params);
 }
 

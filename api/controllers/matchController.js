@@ -3,10 +3,10 @@ import db from '../models/database';
 function getAllMatches(query){
     const {page, size} = query
     let params = {}
-    if(typeof page == 'number' && typeof size == 'number'){
+    if (typeof +page === 'number' &&  typeof +size === 'number') {
         params = {
-            limit: size,
-            offset: (page - 1) * size
+            limit: +size,
+            offset: (+page - 1) * +size
         }
     }
     return db.sequelize.models.matches.findAndCountAll(params);

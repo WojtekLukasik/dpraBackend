@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/', (request, response) =>{
     const query = request.query
+    console.log('get')
+    console.log(request.query)
     playerController.getAllPlayers(query).then(({count, rows}) =>{
         if(rows === null){
             response.status(404)
